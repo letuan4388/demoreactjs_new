@@ -3,7 +3,6 @@ import './login.css';
 import {
     Form, Icon, Input, Button, Checkbox,
   } from 'antd';
-import { Redirect } from 'react-router-dom'
 
 class Login extends Component {
     handleSubmit = (e) => {
@@ -12,9 +11,7 @@ class Login extends Component {
           if (!err) {
             console.log('Received values of form: ', values);
             
-            return (
-                <Redirect to='/' />
-            )
+            this.props.history.push('/');
           }
         });
       }

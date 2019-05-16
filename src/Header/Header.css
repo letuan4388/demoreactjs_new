@@ -1,1 +1,7 @@
 @import '~antd/dist/antd.css';
+
+.ant-menu-item > .ant-menu-item-selected {
+    position: absolute;
+    right: 100px;
+    background-color: rebeccapurple !important;
+}
