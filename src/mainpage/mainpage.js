@@ -7,8 +7,8 @@ export default class Mainpage extends Component {
     const { Content, Footer } = Layout;
 
     return (
-      <Layout className="mainpage-layout">
-        <Header/>
+      <Layout className="layout">
+        <Header />
 
         <Content style={{ padding: '50px' }}>
           <div style={{ background: '#fff', padding: 24, minHeight: 280 }}>Content</div>
