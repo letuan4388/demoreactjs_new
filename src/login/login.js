@@ -1,25 +1,17 @@
 import React, { Component } from 'react';
 import './login.css';
 import { Form, Icon, Input, Button, Checkbox } from 'antd';
+import { store } from '../Redux/Store'
+import { setUserInfo } from '../Redux/Actions'
 
 class Login extends Component {
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            user: ''
-        }
-    }
-
     handleSubmit = (e) => {
         e.preventDefault();
         this.props.form.validateFields((err, values) => {
           if (!err) {
             console.log('Received values of form: ', values);
-
-            this.setState({
-                user: values.username
-            })
+            
+            store.dispatch(setUserInfo(values.username));
             
             this.props.history.push('/');
           }

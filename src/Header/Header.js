@@ -3,20 +3,14 @@ import './Header.css'
 import { Layout, Menu, Icon } from 'antd'
 import { Link } from 'react-router-dom'
 import SubMenu from 'antd/lib/menu/SubMenu'
+import { connect } from 'react-redux'
+import { store } from '../Redux/Store'
+import { setUserInfo } from '../Redux/Actions'
 
-export default class Header extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      userInfo: 'Tuan Le'
-    }
-  }
+class Header extends Component {
 
   handleLogout = (e) => {
-    this.setState({
-      userInfo: null
-    })
+    store.dispatch(setUserInfo(""));
   }
 
   isLoggedIn = () => {
@@ -34,7 +28,7 @@ export default class Header extends Component {
           title={ 
             <span>
               <Icon type="user" style={{ fontSize: '20px' }}/>
-              { this.state.userInfo }
+              { this.props.userInfo }
             </span>
           }
           style={{
@@ -70,8 +64,16 @@ export default class Header extends Component {
 
     return (
       <Header>
-        { this.state.userInfo ? this.isLoggedIn() : this.isNotLoggedIn() }
+        { this.props.userInfo ? this.isLoggedIn() : this.isNotLoggedIn() }
       </Header>       
     )
   }
 }
+
+function mapStateToProps(state) {
+  return {
+    userInfo: state.userInfo
+  }
+}
+
+export default connect(mapStateToProps)(Header);
